@@ -24,7 +24,10 @@ module Fluent
       def parse(text)
 
         if @with_priority
-          if /^\<.*\>\d/.match(text)
+          if /^\<.*\>... .. .... ..:..:.. /.match(text)
+            #match cisco with year syslog format
+            regex = /^\<(?<pri>[0-9]+)\>(?<time>[^ ]* {1,2}[^ ]* .... [^ ]*) (?<host>[^ ]*) (?<ident>[^ ]*) (?<pid>[^ ]*) (?<msgid>[^ ]*) (-|) *(?<message>.*)$/
+          elsif /^\<.*\>\d/.match(text)
             #match rfc5424 syslog format
             regex = /^\<(?<pri>[0-9]+)\>(1)(?<time>[^ ]* {1,2}[^ ]*) (?<host>[^ ]*) (?<ident>[^ ]*) (?<pid>[^ ]*) (?<msgid>[^ ]*) (-|) *(?<message>.*)$/
           elsif /^\<.*>/.match(text)
