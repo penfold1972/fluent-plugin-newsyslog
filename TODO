@@ -1,0 +1,7 @@
+Create a test that can catch a PIX log:
+<165>Feb 24 2023 16:56:41 FW2-PRI : %PIX-5-304001: 192.168.1.101 Accessed URL 100.100.100.100:/path/to/resource
+
+Make sure messages aren't being mis-parsed: (invalid time format)
+  or (error_class=Fluent::TimeParser::TimeParseError error="invalid time format: 
+      value = Feb 24 2023, error_class = ArgumentError, error = string doesn't match")
+{"host":"16:39:20","ident":"FW2-PRI","message":"%PIX-5-304001: 192.168.2.101 Accessed URL 100.100.100.200:/path/to/resource"}
